@@ -24,14 +24,12 @@ pipeline {
 
         stage("Code coverage") {
             steps {
-                sh "mvn clean test"
-                sh "mvn jacoco:report"
+                sh "mvn clean verify"
                 publishHTML(target: [
                     reportDir: 'target/site/jacoco',
                     reportFiles: 'index.html',
                     reportName: 'JaCoCo Report'
                 ])
-                sh "mvn jacoco:check"
             }
         }
 
